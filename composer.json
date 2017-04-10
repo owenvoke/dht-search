@@ -1,0 +1,11 @@
+{
+  "name": "pxgamer/dht-search",
+  "description": "A collection of tools for searching DHT.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "pxgamer\\DHT\\": "src/"
+    }
+  }
+}
