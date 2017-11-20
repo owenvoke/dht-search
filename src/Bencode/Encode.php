@@ -11,7 +11,7 @@ class Encode
         $this->data = $data;
     }
 
-    static public function encode($data)
+    public static function encode($data)
     {
         if (is_object($data)) {
             if (method_exists($data, 'toArray')) {

@@ -16,7 +16,6 @@ class Response
         $nodes = Base::decode_nodes($msg['r']['nodes']);
 
         foreach ($nodes as $node) {
-
             append($node);
         }
     }

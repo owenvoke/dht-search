@@ -17,7 +17,7 @@ class Decode
         $this->length = strlen($source);
     }
 
-    static public function decode($source)
+    public static function decode($source)
     {
 
         if (!is_string($source)) {

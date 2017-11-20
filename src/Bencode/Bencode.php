@@ -4,12 +4,12 @@ namespace pxgamer\DHT\Bencode;
 
 class Bencode
 {
-    static public function decode($str)
+    public static function decode($str)
     {
         return Decode::decode($str);
     }
 
-    static public function encode($value)
+    public static function encode($value)
     {
         return Encode::encode($value);
     }
