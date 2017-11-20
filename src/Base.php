@@ -75,7 +75,6 @@ class Base
      */
     public static function encode_nodes($nodes)
     {
-
         if (count($nodes) == 0) {
             return $nodes;
         }
@@ -96,7 +95,6 @@ class Base
      */
     public static function decode_nodes($msg)
     {
-
         if ((strlen($msg) % 26) != 0) {
             return array();
         }
