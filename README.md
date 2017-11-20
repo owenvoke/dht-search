@@ -1,4 +1,4 @@
-# dht
+# dht-search
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -114,17 +114,17 @@ If you discover any security related issues, please email owzie123@gmail.com ins
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/pxgamer/dht.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/pxgamer/dht-search.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/pxgamer/dht/master.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/pxgamer/dht-search/master.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/87832777/shield
-[ico-code-quality]: https://img.shields.io/codecov/c/github/pxgamer/dht.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/pxgamer/dht.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/codecov/c/github/pxgamer/dht-search.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/pxgamer/dht-search.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/pxgamer/dht
-[link-travis]: https://travis-ci.org/pxgamer/dht
+[link-packagist]: https://packagist.org/packages/pxgamer/dht-search
+[link-travis]: https://travis-ci.org/pxgamer/dht-search
 [link-styleci]: https://styleci.io/repos/87832777
-[link-code-quality]: https://codecov.io/gh/pxgamer/dht
-[link-downloads]: https://packagist.org/packages/pxgamer/dht
+[link-code-quality]: https://codecov.io/gh/pxgamer/dht-search
+[link-downloads]: https://packagist.org/packages/pxgamer/dht-search
 [link-author]: https://github.com/pxgamer
 [link-contributors]: ../../contributors
