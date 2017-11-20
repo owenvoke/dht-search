@@ -38,7 +38,6 @@ class Decode
      */
     public static function decode($source)
     {
-
         if (!is_string($source)) {
             return '';
         }
@@ -60,7 +59,6 @@ class Decode
      */
     private function do_decode()
     {
-
         switch ($this->get_char()) {
             case 'i':
                 ++$this->offset;

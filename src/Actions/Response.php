@@ -17,7 +17,6 @@ class Response
      */
     public static function action($msg, $address)
     {
-
         if (!isset($msg['r']['nodes']) || !isset($msg['r']['nodes'][1])) {
             return false;
         }
