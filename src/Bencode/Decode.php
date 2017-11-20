@@ -2,21 +2,40 @@
 
 namespace pxgamer\DHT\Bencode;
 
+/**
+ * Class Decode
+ */
 class Decode
 {
-
+    /**
+     * @var string
+     */
     private $source;
 
+    /**
+     * @var int
+     */
     private $length;
 
+    /**
+     * @var int
+     */
     private $offset = 0;
 
+    /**
+     * Decode constructor.
+     * @param $source
+     */
     private function __construct($source)
     {
         $this->source = $source;
         $this->length = strlen($source);
     }
 
+    /**
+     * @param mixed $source
+     * @return array|bool|string
+     */
     public static function decode($source)
     {
 
@@ -36,6 +55,9 @@ class Decode
         return $decoded;
     }
 
+    /**
+     * @return array|bool|int|string
+     */
     private function do_decode()
     {
 
@@ -58,6 +80,10 @@ class Decode
         return '';
     }
 
+    /**
+     * @param int|null $offset
+     * @return bool
+     */
     private function get_char($offset = null)
     {
         if ($offset === null) {
@@ -71,6 +97,9 @@ class Decode
         return $this->source[$offset];
     }
 
+    /**
+     * @return bool|int|string
+     */
     private function decode_integer()
     {
         $offset_e = strpos($this->source, 'e', $this->offset);
@@ -109,6 +138,9 @@ class Decode
         return $value + 0;
     }
 
+    /**
+     * @return array|string
+     */
     private function decode_list()
     {
         $list = array();
@@ -133,6 +165,9 @@ class Decode
         return $list;
     }
 
+    /**
+     * @return array|string
+     */
     private function decode_dict()
     {
         $dict = array();
@@ -169,6 +204,9 @@ class Decode
         return $dict;
     }
 
+    /**
+     * @return bool|string
+     */
     private function decode_string()
     {
         if ('0' === $this->get_char() && ':' != $this->get_char($this->offset + 1)) {

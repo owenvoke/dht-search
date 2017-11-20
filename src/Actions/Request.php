@@ -2,12 +2,21 @@
 
 namespace pxgamer\DHT\Actions;
 
+use pxgamer\DHT\Base;
 use pxgamer\DHT\DHT;
 use pxgamer\DHT\Logger;
 use pxgamer\DHT\Node;
 
+/**
+ * Class Request
+ */
 class Request
 {
+    /**
+     * @param array $msg
+     * @param string $address
+     * @return bool
+     */
     public static function action($msg, $address)
     {
         switch ($msg['q']) {
@@ -28,19 +37,20 @@ class Request
         }
     }
 
+    /**
+     * @param array $msg
+     * @param string $address
+     */
     public static function ping($msg, $address)
     {
-        global $nid;
-
-
         $id = $msg['a']['id'];
 
         $msg = array(
             't' => $msg['t'],
             'y' => 'r',
-            'r' => array(
+            'r' => [
                 'id' => $nid
-            )
+            ]
         );
 
 
@@ -49,6 +59,10 @@ class Request
         Response::send($msg, $address);
     }
 
+    /**
+     * @param array $msg
+     * @param string $address
+     */
     public static function find($msg, $address)
     {
         $nodes = DHT::get_nodes(16);
@@ -65,12 +79,16 @@ class Request
         );
 
 
-        append(new Node($id, $address[0], $address[1]));
+        DHT::append(new Node($id, $address[0], $address[1]));
 
-        send_response($msg, $address);
+        Response::send($msg, $address);
     }
 
 
+    /**
+     * @param $msg
+     * @param $address
+     */
     public static function peers($msg, $address)
     {
         $infohash = $msg['a']['info_hash'];
@@ -83,18 +101,22 @@ class Request
             'y' => 'r',
             'r' => array(
                 'id' => $nid,
-                'nodes' => Base::encode_nodes(get_nodes()),
+                'nodes' => Base::encode_nodes(DHT::get_nodes()),
                 'token' => substr($infohash, 0, 2)
             )
         );
 
 
-        append(new Node($id, $address[0], $address[1]));
+        DHT::append(new Node($id, $address[0], $address[1]));
 
-        send_response($msg, $address);
+        Response::send($msg, $address);
     }
 
 
+    /**
+     * @param array $msg
+     * @param string $address
+     */
     public static function announce($msg, $address)
     {
         $infohash = $msg['a']['info_hash'];

@@ -4,16 +4,43 @@ namespace pxgamer\DHT;
 
 use pxgamer\DHT\Actions\Response;
 
+/**
+ * Class DHT
+ */
 class DHT
 {
+    /**
+     * @var string
+     */
     public static $node_id;
+    /**
+     * @var
+     */
     public static $bootstrap_nodes;
+    /**
+     * @var
+     */
     public static $server;
+    /**
+     * @var
+     */
     public static $last_find;
+    /**
+     * @var
+     */
     public static $threads;
+    /**
+     * @var
+     */
     public static $table;
+    /**
+     * @var
+     */
     public static $data;
 
+    /**
+     * @param array $node_endpoints
+     */
     public static function start($node_endpoints = [])
     {
         self::$node_id = Base::get_node_id();
@@ -29,6 +56,9 @@ class DHT
         Logger::write(date('Y-m-d H:i:s', time()) . " - Starting service...\n");
     }
 
+    /**
+     * @return bool
+     */
     public static function timer()
     {
         if (strlen(self::$data) == 0) {
@@ -43,6 +73,9 @@ class DHT
         }
     }
 
+    /**
+     * @return bool
+     */
     public static function auto()
     {
         if (count(self::$table) == 0) {
@@ -57,6 +90,9 @@ class DHT
         }
     }
 
+    /**
+     * @return bool
+     */
     public static function join()
     {
         foreach (self::$bootstrap_nodes as $node) {
@@ -65,6 +101,10 @@ class DHT
         return true;
     }
 
+    /**
+     * @param      $address
+     * @param null $id
+     */
     public static function find($address, $id = null)
     {
         if (is_null($id)) {
@@ -86,6 +126,10 @@ class DHT
         Response::send($msg, $address);
     }
 
+    /**
+     * @param int $len
+     * @return array
+     */
     public static function get_nodes($len = 8)
     {
         global $table;
@@ -103,6 +147,10 @@ class DHT
         return $nodes;
     }
 
+    /**
+     * @param $node
+     * @return bool|int
+     */
     public static function append($node)
     {
         if (!isset($node->nid[19])) {

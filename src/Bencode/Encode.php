@@ -2,15 +2,29 @@
 
 namespace pxgamer\DHT\Bencode;
 
+/**
+ * Class Encode
+ */
 class Encode
 {
+    /**
+     * @var string
+     */
     private $data;
 
+    /**
+     * Encode constructor.
+     * @param $data
+     */
     private function __construct($data)
     {
         $this->data = $data;
     }
 
+    /**
+     * @param string $data
+     * @return string
+     */
     public static function encode($data)
     {
         if (is_object($data)) {
@@ -27,6 +41,10 @@ class Encode
         return $encoded;
     }
 
+    /**
+     * @param null $data
+     * @return string
+     */
     private function do_encode($data = null)
     {
         $data = is_null($data) ? $this->data : $data;
@@ -43,6 +61,10 @@ class Encode
         }
     }
 
+    /**
+     * @param array|null $data
+     * @return string
+     */
     private function encode_list(array $data = null)
     {
         $data = is_null($data) ? $this->data : $data;
@@ -55,6 +77,10 @@ class Encode
         return "l{$list}e";
     }
 
+    /**
+     * @param array|null $data
+     * @return string
+     */
     private function encode_dict(array $data = null)
     {
         $data = is_null($data) ? $this->data : $data;
@@ -68,6 +94,10 @@ class Encode
         return "d{$dict}e";
     }
 
+    /**
+     * @param null $data
+     * @return string
+     */
     private function encode_string($data = null)
     {
         $data = is_null($data) ? $this->data : $data;
@@ -75,6 +105,10 @@ class Encode
         return sprintf("%d:%s", strlen($data), $data);
     }
 
+    /**
+     * @param null $data
+     * @return string
+     */
     private function encode_integer($data = null)
     {
         $data = is_null($data) ? $this->data : $data;
