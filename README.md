@@ -38,8 +38,6 @@ $last_find = time();
 
 $threads = [];
 
-
-
 Logger::write(date('Y-m-d H:i:s', time()) . " - Starting service...\n");
 
 $serv = new swoole_server('0.0.0.0', 6882, SWOOLE_PROCESS, SWOOLE_SOCK_UDP);
@@ -85,7 +83,6 @@ $serv->on('Receive', function ($serv, $fd, $from_id, $data) {
         return false;
     }
 });
-
 
 $serv->start();
 ```
