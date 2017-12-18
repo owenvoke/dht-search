@@ -9,6 +9,8 @@ use pxgamer\DHT\Actions\Response;
  */
 class DHT
 {
+    public const TABLE_MAX_LENGTH = 200;
+
     /**
      * @var string
      */
@@ -168,7 +170,7 @@ class DHT
         }
 
 
-        if (count(self::$table) >= 200) {
+        if (count(self::$table) >= self::TABLE_MAX_LENGTH) {
             array_shift(self::$table);
         }
 
