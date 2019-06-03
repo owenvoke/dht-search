@@ -5,7 +5,7 @@ namespace pxgamer\DHT;
 use pxgamer\DHT\Bencode\Bencode;
 
 /**
- * Class Base
+ * Class Base.
  */
 class Base
 {
@@ -48,7 +48,7 @@ class Base
      */
     public static function get_neighbor($target, $nid)
     {
-        return substr($target, 0, 10) . substr($nid, 10, 10);
+        return substr($target, 0, 10).substr($nid, 10, 10);
     }
 
     /**
@@ -81,7 +81,6 @@ class Base
 
         $n = '';
 
-
         foreach ($nodes as $node) {
             $n .= pack('a20Nn', $node->nid, ip2long($node->ip), $node->port);
         }
@@ -96,11 +95,10 @@ class Base
     public static function decode_nodes($msg)
     {
         if ((strlen($msg) % 26) != 0) {
-            return array();
+            return [];
         }
 
-        $n = array();
-
+        $n = [];
 
         foreach (str_split($msg, 26) as $s) {
             $r = unpack('a20nid/Nip/np', $s);

@@ -3,7 +3,7 @@
 namespace pxgamer\DHT\Bencode;
 
 /**
- * Class Encode
+ * Class Encode.
  */
 class Encode
 {
@@ -31,7 +31,7 @@ class Encode
             if (method_exists($data, 'toArray')) {
                 $data = $data->toArray();
             } else {
-                $data = (array)$data;
+                $data = (array) $data;
             }
         }
 
@@ -53,8 +53,9 @@ class Encode
             return $this->encode_list($data);
         } elseif (is_array($data)) {
             return $this->encode_dict($data);
-        } elseif (is_integer($data) || is_float($data)) {
-            $data = sprintf("%.0f", round($data, 0));
+        } elseif (is_int($data) || is_float($data)) {
+            $data = sprintf('%.0f', round($data, 0));
+
             return $this->encode_integer($data);
         } else {
             return $this->encode_string($data);
@@ -88,7 +89,7 @@ class Encode
         $dict = '';
 
         foreach ($data as $key => $value) {
-            $dict .= $this->encode_string($key) . $this->do_encode($value);
+            $dict .= $this->encode_string($key).$this->do_encode($value);
         }
 
         return "d{$dict}e";
@@ -102,7 +103,7 @@ class Encode
     {
         $data = is_null($data) ? $this->data : $data;
 
-        return sprintf("%d:%s", strlen($data), $data);
+        return sprintf('%d:%s', strlen($data), $data);
     }
 
     /**
@@ -113,6 +114,6 @@ class Encode
     {
         $data = is_null($data) ? $this->data : $data;
 
-        return sprintf("i%.0fe", $data);
+        return sprintf('i%.0fe', $data);
     }
 }
