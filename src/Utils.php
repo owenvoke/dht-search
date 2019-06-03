@@ -3,13 +3,10 @@
 namespace pxgamer\DHT;
 
 /**
- * Class Utils
+ * Class Utils.
  */
 class Utils
 {
-    /**
-     *
-     */
     public function timer()
     {
         for ($i = 0; $i < MAX_PROCESS; $i++) {

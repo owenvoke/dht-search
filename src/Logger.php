@@ -3,12 +3,12 @@
 namespace pxgamer\DHT;
 
 /**
- * Class Logger
+ * Class Logger.
  */
 class Logger
 {
     /**
-     * Log file name
+     * Log file name.
      */
     const LOG_FILE = 'info_hash.log';
 
@@ -17,6 +17,6 @@ class Logger
      */
     public static function write($message)
     {
-        file_put_contents(self::LOG_FILE, $message . "\n", FILE_APPEND);
+        file_put_contents(self::LOG_FILE, $message."\n", FILE_APPEND);
     }
 }

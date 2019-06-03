@@ -3,7 +3,7 @@
 namespace pxgamer\DHT\Bencode;
 
 /**
- * Class Decode
+ * Class Decode.
  */
 class Decode
 {
@@ -38,14 +38,12 @@ class Decode
      */
     public static function decode($source)
     {
-        if (!is_string($source)) {
+        if (! is_string($source)) {
             return '';
         }
 
-
         $decode = new self($source);
         $decoded = $decode->do_decode();
-
 
         if ($decode->offset != $decode->length) {
             return '';
@@ -62,12 +60,15 @@ class Decode
         switch ($this->get_char()) {
             case 'i':
                 ++$this->offset;
+
                 return $this->decode_integer();
             case 'l':
                 ++$this->offset;
+
                 return $this->decode_list();
             case 'd':
                 ++$this->offset;
+
                 return $this->decode_dict();
             default:
                 if (ctype_digit($this->get_char())) {
@@ -109,7 +110,7 @@ class Decode
         $current_off = $this->offset;
 
         if ($this->get_char($current_off) == '-') {
-            ++$current_off;
+            $current_off++;
         }
 
         if ($offset_e === $current_off) {
@@ -117,15 +118,15 @@ class Decode
         }
 
         while ($current_off < $offset_e) {
-            if (!ctype_digit($this->get_char($current_off))) {
+            if (! ctype_digit($this->get_char($current_off))) {
                 return '';
             }
 
-            ++$current_off;
+            $current_off++;
         }
 
         $value = substr($this->source, $this->offset, $offset_e - $this->offset);
-        $absolute_value = (string)abs($value);
+        $absolute_value = (string) abs($value);
 
         if (1 < strlen($absolute_value) && '0' == $value[0]) {
             return '';
@@ -141,7 +142,7 @@ class Decode
      */
     private function decode_list()
     {
-        $list = array();
+        $list = [];
         $terminated = false;
         $list_offset = $this->offset;
 
@@ -154,7 +155,7 @@ class Decode
             $list[] = $this->do_decode();
         }
 
-        if (!$terminated && $this->get_char() === false) {
+        if (! $terminated && $this->get_char() === false) {
             return '';
         }
 
@@ -168,7 +169,7 @@ class Decode
      */
     private function decode_dict()
     {
-        $dict = array();
+        $dict = [];
         $terminated = false;
         $dict_offset = $this->offset;
 
@@ -180,7 +181,7 @@ class Decode
 
             $key_offset = $this->offset;
 
-            if (!ctype_digit($this->get_char())) {
+            if (! ctype_digit($this->get_char())) {
                 return '';
             }
 
@@ -193,7 +194,7 @@ class Decode
             $dict[$key] = $this->do_decode();
         }
 
-        if (!$terminated && $this->get_char() === false) {
+        if (! $terminated && $this->get_char() === false) {
             return '';
         }
 
@@ -217,7 +218,7 @@ class Decode
             return '';
         }
 
-        $content_length = (int)substr($this->source, $this->offset, $offset_o);
+        $content_length = (int) substr($this->source, $this->offset, $offset_o);
 
         if (($content_length + $offset_o + 1) > $this->length) {
             return '';

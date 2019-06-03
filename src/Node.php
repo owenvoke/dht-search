@@ -3,7 +3,7 @@
 namespace pxgamer\DHT;
 
 /**
- * Class Node
+ * Class Node.
  */
 class Node
 {
@@ -42,8 +42,6 @@ class Node
         if (isset($this->$name)) {
             return $this->$name;
         }
-
-        return null;
     }
 
     /**
@@ -69,6 +67,6 @@ class Node
      */
     public function to_array()
     {
-        return array('nid' => $this->nid, 'ip' => $this->ip, 'port' => $this->port);
+        return ['nid' => $this->nid, 'ip' => $this->ip, 'port' => $this->port];
     }
 }

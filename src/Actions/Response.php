@@ -2,11 +2,11 @@
 
 namespace pxgamer\DHT\Actions;
 
-use pxgamer\DHT\Base;
 use pxgamer\DHT\DHT;
+use pxgamer\DHT\Base;
 
 /**
- * Class Response
+ * Class Response.
  */
 class Response
 {
@@ -17,7 +17,7 @@ class Response
      */
     public static function action($msg, $address)
     {
-        if (!isset($msg['r']['nodes']) || !isset($msg['r']['nodes'][1])) {
+        if (! isset($msg['r']['nodes']) || ! isset($msg['r']['nodes'][1])) {
             return false;
         }
 

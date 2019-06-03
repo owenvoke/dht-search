@@ -3,7 +3,7 @@
 namespace pxgamer\DHT\Bencode;
 
 /**
- * Class Bencode
+ * Class Bencode.
  */
 class Bencode
 {

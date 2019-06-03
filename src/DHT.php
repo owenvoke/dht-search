@@ -5,7 +5,7 @@ namespace pxgamer\DHT;
 use pxgamer\DHT\Actions\Response;
 
 /**
- * Class DHT
+ * Class DHT.
  */
 class DHT
 {
@@ -50,12 +50,12 @@ class DHT
             [
                 ['router.bittorrent.com', 6881],
                 ['dht.transmissionbt.com', 6881],
-                ['router.utorrent.com', 6881]
+                ['router.utorrent.com', 6881],
             ],
             $node_endpoints
         );
 
-        Logger::write(date('Y-m-d H:i:s', time()) . " - Starting service...\n");
+        Logger::write(date('Y-m-d H:i:s', time())." - Starting service...\n");
     }
 
     /**
@@ -87,7 +87,7 @@ class DHT
         while (count(self::$table)) {
             $node = array_shift(self::$table);
 
-            self::find(array($node->ip, $node->port), $node->nid);
+            self::find([$node->ip, $node->port], $node->nid);
             sleep(0.005);
         }
     }
@@ -98,8 +98,9 @@ class DHT
     public static function join()
     {
         foreach (self::$bootstrap_nodes as $node) {
-            self::find(array(gethostbyname($node[0]), $node[1]));
+            self::find([gethostbyname($node[0]), $node[1]]);
         }
+
         return true;
     }
 
@@ -115,15 +116,15 @@ class DHT
             $mid = Base::get_neighbor($id, self::$node_id);
         }
 
-        $msg = array(
+        $msg = [
             't' => Base::entropy(2),
             'y' => 'q',
             'q' => 'find_node',
-            'a' => array(
+            'a' => [
                 'id' => self::$node_id,
-                'target' => $mid
-            )
-        );
+                'target' => $mid,
+            ],
+        ];
 
         Response::send($msg, $address);
     }
@@ -140,7 +141,7 @@ class DHT
             return $table;
         }
 
-        $nodes = array();
+        $nodes = [];
 
         for ($i = 0; $i < $len; $i++) {
             $nodes[] = $table[mt_rand(0, count($table) - 1)];
@@ -155,20 +156,17 @@ class DHT
      */
     public static function append($node)
     {
-        if (!isset($node->nid[19])) {
+        if (! isset($node->nid[19])) {
             return false;
         }
-
 
         if ($node->nid == self::$node_id) {
             return false;
         }
 
-
         if (in_array($node, self::$table)) {
             return false;
         }
-
 
         if (count(self::$table) >= self::TABLE_MAX_LENGTH) {
             array_shift(self::$table);

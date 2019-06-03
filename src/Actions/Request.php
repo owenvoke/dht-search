@@ -2,13 +2,13 @@
 
 namespace pxgamer\DHT\Actions;
 
-use pxgamer\DHT\Base;
 use pxgamer\DHT\DHT;
-use pxgamer\DHT\Logger;
+use pxgamer\DHT\Base;
 use pxgamer\DHT\Node;
+use pxgamer\DHT\Logger;
 
 /**
- * Class Request
+ * Class Request.
  */
 class Request
 {
@@ -45,14 +45,13 @@ class Request
     {
         $id = $msg['a']['id'];
 
-        $msg = array(
+        $msg = [
             't' => $msg['t'],
             'y' => 'r',
             'r' => [
-                'id' => $nid
-            ]
-        );
-
+                'id' => $nid,
+            ],
+        ];
 
         DHT::append(new Node($id, $address[0], $address[1]));
 
@@ -69,21 +68,19 @@ class Request
 
         $id = $msg['a']['id'];
 
-        $msg = array(
+        $msg = [
             't' => $msg['t'],
             'y' => 'r',
-            'r' => array(
+            'r' => [
                 'id' => self::$nid,
-                'nodes' => Base::encode_nodes($nodes)
-            )
-        );
-
+                'nodes' => Base::encode_nodes($nodes),
+            ],
+        ];
 
         DHT::append(new Node($id, $address[0], $address[1]));
 
         Response::send($msg, $address);
     }
-
 
     /**
      * @param $msg
@@ -95,23 +92,20 @@ class Request
 
         $id = $msg['a']['id'];
 
-
-        $msg = array(
+        $msg = [
             't' => $msg['t'],
             'y' => 'r',
-            'r' => array(
+            'r' => [
                 'id' => $nid,
                 'nodes' => Base::encode_nodes(DHT::get_nodes()),
-                'token' => substr($infohash, 0, 2)
-            )
-        );
-
+                'token' => substr($infohash, 0, 2),
+            ],
+        ];
 
         DHT::append(new Node($id, $address[0], $address[1]));
 
         Response::send($msg, $address);
     }
-
 
     /**
      * @param array $msg
@@ -124,17 +118,16 @@ class Request
         $token = $msg['a']['token'];
 
         if (substr($infohash, 0, 2) == $token) {
-            Logger::write(date('Y-m-d H:i:s', time()) . " 获取到info_hash: " . strtoupper(bin2hex($infohash)));
+            Logger::write(date('Y-m-d H:i:s', time()).' 获取到info_hash: '.strtoupper(bin2hex($infohash)));
         }
 
-
-        $msg = array(
+        $msg = [
             't' => $msg['t'],
             'y' => 'r',
-            'r' => array(
-                'id' => DHT::$node_id
-            )
-        );
+            'r' => [
+                'id' => DHT::$node_id,
+            ],
+        ];
 
         Response::send($msg, $address);
     }
