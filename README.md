@@ -9,25 +9,17 @@
 
 A collection of tools for searching DHT via PHP.
 
-## Structure
-
-```
-src/
-tests/
-vendor/
-```
-
 ## Install
 
 Via Composer
 
-``` bash
+```bash
 $ composer require pxgamer/dht
 ```
 
 ## Usage
 
-``` php
+```php
 $serv = null;
 
 $this->node_id = Base::get_node_id();
@@ -93,7 +85,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
